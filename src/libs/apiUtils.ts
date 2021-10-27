@@ -49,8 +49,8 @@ const req = async (
           },
           token || refreshToken
             ? tokenType == "refresh"
-              ? { Authorization: `Bearer ${refreshToken}` }
-              : { Authorization: `Bearer ${token}` }
+              ? { Authorization: `Bearer ${refreshToken.replace(/\"/g, "")}` }
+              : { Authorization: `Bearer ${token.replace(/\"/g, "")}` }
             : {}
         ),
       },

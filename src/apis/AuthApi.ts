@@ -1,4 +1,4 @@
-import { checkError, POST, GET, toJson } from "../libs/apiUtils";
+import { checkError, POST, toJson } from "../libs/apiUtils";
 import Credentials from "../models/Credentials";
 import routes from "./routes";
 
@@ -7,5 +7,5 @@ export async function Login(credentials: Credentials) {
 };
 
 export async function RefreshToken() {
-	return POST(routes.login(), null, {}, "refresh").then(checkError).then(toJson);
+	return POST(routes.refreshToken(), null, {}, "refresh").then(checkError).then(toJson);
 };

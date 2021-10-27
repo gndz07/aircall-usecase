@@ -20,6 +20,8 @@ export default function AppRouter() {
       const accessToken = await storage.get(storage.Key.Token);
       const refreshToken = await storage.get(storage.Key.RefreshToken);
       const username = await storage.get(storage.Key.Username);
+      console.log(jwt.isExpired(accessToken));
+      console.log(jwt.isExpired(refreshToken));
       if (accessToken) {
         if (!jwt.isExpired(accessToken)) {
           dispatch(

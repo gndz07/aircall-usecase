@@ -13,9 +13,9 @@ export const Login = {
 };
 
 export const RefreshToken = {
-	request: () => ({ type: LOGIN.REQUEST }),
-	success: (payload: UserAuth) => ({ type: LOGIN.SUCCESS, payload }),
-	failed: (payload: Error) => ({ type: LOGIN.FAILED, payload }),
+	request: () => ({ type: REFRESH_TOKEN.REQUEST }),
+	success: (payload: UserAuth) => ({ type: REFRESH_TOKEN.SUCCESS, payload }),
+	failed: (payload: Error) => ({ type: REFRESH_TOKEN.FAILED, payload }),
 };
 
 export const Token = (payload) => ({
