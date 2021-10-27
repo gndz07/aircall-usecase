@@ -5,8 +5,8 @@ import { Redirect } from "react-router-dom";
 import Login from "../components/pages/Login";
 import Dashboard from "../components/pages/Dashboard";
 import CallData from "../components/pages/CallData";
-//import Header from '../components/Header.js';
-//import Footer from '../components/Footer.js';
+import Header from '../components/Header';
+//import Footer from '../components/Footer';
 import "../App.css";
 import { RootState } from "../reducers";
 import * as storage from "../libs/storage";
@@ -49,11 +49,12 @@ export default function AppRouter() {
     <Router>
       <div id="main-container">
         <Switch>
-          <Route exact path="/">
-            {token ? <Dashboard /> : <Redirect to="/login" />}
-          </Route>
+          <Route path="/login">{token ? <Redirect to="/" /> : <Login />}</Route>
           <Fragment>
-            <Route path="/login">{token ? <Redirect to="/" /> : <Login />}</Route>
+            <Header />
+            <Route exact path="/">
+              {token ? <Dashboard /> : <Redirect to="/login" />}
+            </Route>
             <Route path='/call/:id' component={CallData} />
           </Fragment>
         </Switch>

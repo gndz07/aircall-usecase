@@ -46,7 +46,7 @@ export default function Dashboard() {
     };
 
     useEffect(() => {
-        if (user) {
+        if (user && calls.length == 0) {
             dispatch(Actions.Calls.GetCalls.request({offset: 0}));
         }
     }, []);
