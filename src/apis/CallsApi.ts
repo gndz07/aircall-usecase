@@ -3,7 +3,7 @@ import Credentials from "../models/Credentials";
 import routes from "./routes";
 
 export async function GetCalls(payload) {
-	return GET(routes.calls(payload.offset, payload.limit)).then(checkError).then(toJson);
+	return GET(routes.calls(payload.offset)).then(checkError).then(toJson);
 };
 
 export async function GetCallData(payload) {

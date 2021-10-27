@@ -8,7 +8,11 @@ export interface CallsReducerState extends ApiReducerState {
 
 const initialState: CallsReducerState = {
 	...apiReducerInitialState,
-	calls: null,
+	calls: {
+		nodes: [],
+		totalCount: null,
+		hasNextPage: null
+	},
     selectedCall: null
 };
 
@@ -27,7 +31,12 @@ export default function callsReducer(
             return {
 				...state,
 				...fetching.success,
-				calls: payload
+				calls: {
+					...state.calls,
+					nodes: [...state.calls.nodes.concat(payload.nodes)],
+					totalCount: payload.totalCount,
+					hasNextPage: payload.hasNextPage
+				}
 			};
         case Actions.Calls.GET_CALL_DATA.SUCCESS:
             return {
