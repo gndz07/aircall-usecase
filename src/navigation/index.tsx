@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import Login from "../components/pages/Login";
 import Dashboard from "../components/pages/Dashboard";
+import CallData from "../components/pages/CallData";
 //import Header from '../components/Header.js';
 //import Footer from '../components/Footer.js';
 import "../App.css";
@@ -51,7 +52,10 @@ export default function AppRouter() {
           <Route exact path="/">
             {token ? <Dashboard /> : <Redirect to="/login" />}
           </Route>
-          <Route path="/login">{token ? <Redirect to="/" /> : <Login />}</Route>
+          <Fragment>
+            <Route path="/login">{token ? <Redirect to="/" /> : <Login />}</Route>
+            <Route path='/call/:id' component={CallData} />
+          </Fragment>
         </Switch>
       </div>
     </Router>

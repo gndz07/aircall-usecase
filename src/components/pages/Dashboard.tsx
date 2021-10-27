@@ -1,18 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Actions from "../../actions";
-import logo from "../../assets/aircall-logo.png";
 import { RootState } from "../../reducers";
 import MUIDataTable from "mui-datatables";
 import "./dashboard.css";
 
 export default function Dashboard() {
     const dispatch = useDispatch();
-    const [page, setPage] = useState(1);
-    const [offset, setOffset] = useState(0);
+    let history = useHistory();
     const [selectedCall, setSelectedCalls] = useState(null);
-    const [callDetailModalVisible, setCallDetailModalVisible] = useState(false);
-    const [isModalActive, setModalActive] = useState(false);
     const user = useSelector((state: RootState) => state.auth.user);
     const callsDataStatus = useSelector((state: RootState) => state.calls?.calls);
     const calls = useSelector((state: RootState) => state.calls?.calls?.nodes);
@@ -31,11 +28,8 @@ export default function Dashboard() {
     }, [calls]);
 
     const handleSelectCall = (index) => {
-        setSelectedCalls(calls[index]);
-        setModalActive(true);
-        console.log(selectedCall);
-        console.log(callDetailModalVisible);
-    }
+        history.push(`/call/${calls[index].id}`);
+    };
 
     const options = {
         filter: false,
@@ -45,15 +39,15 @@ export default function Dashboard() {
         print: false,
         viewColumns: false,
         rowsPerPage: 10,
-        onRowClick: (rowIndex) => {
-            console.log(rowIndex.rowIndex);
-            handleSelectCall(rowIndex.rowIndex);
+        onRowClick: (rowData, rowMeta) => {
+            console.log(rowData, rowMeta);
+            handleSelectCall(rowMeta?.rowIndex)
         }
     };
 
     useEffect(() => {
         if (user) {
-            dispatch(Actions.Calls.GetCalls.request({offset}));
+            dispatch(Actions.Calls.GetCalls.request({offset: 0}));
         }
     }, []);
 
