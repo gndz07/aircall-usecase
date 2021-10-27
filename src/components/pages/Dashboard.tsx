@@ -9,39 +9,64 @@ import "./dashboard.css";
 export default function Dashboard() {
     const dispatch = useDispatch();
     let history = useHistory();
-    const [selectedCall, setSelectedCalls] = useState(null);
     const user = useSelector((state: RootState) => state.auth.user);
     const callsDataStatus = useSelector((state: RootState) => state.calls?.calls);
     const calls = useSelector((state: RootState) => state.calls?.calls?.nodes);
 
-    const columns = ["From", "To", "Direction", "Call type"];
+    const columns = [
+        "Date",
+        {
+            name: "from",
+            label: "From",
+            options: {
+             filter: false,
+             sort: true,
+            }
+        }, 
+        {
+            name: "to",
+            label: "To",
+            options: {
+             filter: false,
+             sort: true,
+            }
+        },
+        "Direction",
+        "Call type",
+        {
+            name: "id",
+            label: "Id",
+            options: {
+             display: "excluded",
+             filter: false
+            }
+        }
+    ];
 
     const callsData = useMemo(() => {
         if (calls) {
             const compiledData = [];
             calls.forEach(call => {
-                const data = [call.from, call.to, call.direction, call.call_type];
+                const data = [call.created_at.split("T")[0], call.from, call.to, call.direction, call.call_type, call.id];
                 compiledData.push(data);
             });
             return compiledData;
         }
     }, [calls]);
 
-    const handleSelectCall = (index) => {
-        history.push(`/call/${calls[index].id}`);
+    const handleSelectCall = (id) => {
+        history.push(`/call/${id}`);
     };
 
     const options = {
-        filter: false,
         download: false,
         selectableRowsHideCheckboxes: true,
-        selectableRowsHeader: false,
         print: false,
         viewColumns: false,
         rowsPerPage: 10,
         onRowClick: (rowData, rowMeta) => {
             console.log(rowData, rowMeta);
-            handleSelectCall(rowMeta?.rowIndex)
+            handleSelectCall(rowData[5]);
         }
     };
 
