@@ -5,3 +5,7 @@ import routes from "./routes";
 export async function Login(credentials: Credentials) {
 	return POST(routes.login(), credentials).then(checkError).then(toJson);
 };
+
+export async function RefreshToken() {
+	return POST(routes.login(), null, {}, "refresh").then(checkError).then(toJson);
+};

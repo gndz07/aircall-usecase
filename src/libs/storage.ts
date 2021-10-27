@@ -1,6 +1,7 @@
 export enum Key {
 	Token = "token",
 	RefreshToken = "refresh_token",
+	Username = "username"
 }
 
 export const get = (k: Key): Promise<any> => {

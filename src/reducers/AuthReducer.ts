@@ -24,17 +24,20 @@ export default function authReducer(
 ): AuthReducerState {
 	switch (type) {
 		case Actions.Auth.LOGIN.REQUEST:
+		case Actions.Auth.REFRESH_TOKEN.REQUEST:
             return {
 				...state,
 				...fetching.request,
 			};
         case Actions.Auth.LOGIN.SUCCESS:
+		case Actions.Auth.REFRESH_TOKEN.SUCCESS:
             return {
 				...state,
 				...fetching.success,
 				user: payload
 			};
         case Actions.Auth.LOGIN.FAILED:
+		case Actions.Auth.REFRESH_TOKEN.FAILED:
             return {
 				...state,
 				...fetching.failed,
@@ -46,7 +49,11 @@ export default function authReducer(
 				user: {
 					...state.user,
 					access_token: payload.accessToken,
-					refresh_token: payload.refreshToken
+					refresh_token: payload.refreshToken,
+					user: {
+						...state.user.user,
+						username: payload.username
+					}
 				}
 			};
 		default:
