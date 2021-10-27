@@ -1,0 +1,1 @@
+export const API_HOST = "https://frontend-test-api.aircall.io"
