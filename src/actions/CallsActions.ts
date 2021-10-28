@@ -1,7 +1,9 @@
 import asyncAction from "./asyncAction";
 
-export const GET_CALLS = asyncAction("@@aircall/get-calls");
-export const GET_CALL_DATA = asyncAction("@@aircall/get-call-data");
+export const GET_CALLS = asyncAction("@@aircall/calls/get-calls");
+export const GET_CALL_DATA = asyncAction("@@aircall/calls/get-call-data");
+export const ADD_NOTE = asyncAction("@@aircall/calls/add-note");
+export const RESET_FETCHING = "@@aircall/calls/fetching/reset";
 
 export const GetCalls = {
 	request: (payload) => ({ type: GET_CALLS.REQUEST, payload }),
@@ -14,3 +16,13 @@ export const GetCallData = {
 	success: (payload) => ({ type: GET_CALL_DATA.SUCCESS, payload }),
 	failed: (payload: Error) => ({ type: GET_CALL_DATA.FAILED, payload }),
 };
+
+export const AddNote = {
+	request: (payload) => ({ type: ADD_NOTE.REQUEST, payload }),
+	success: (payload) => ({ type: ADD_NOTE.SUCCESS, payload }),
+	failed: (payload: Error) => ({ type: ADD_NOTE.FAILED, payload }),
+};
+
+export const ResetFetching = () => ({
+	type: RESET_FETCHING,
+});

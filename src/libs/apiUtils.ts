@@ -10,7 +10,9 @@ export const checkError = async (response) => {
 };
 
 export const toJson = async (response) => {
+  console.log(response);
   let resp = await response.text();
+  console.log(resp);
   return resp ? JSON.parse(resp) : {};
 };
 

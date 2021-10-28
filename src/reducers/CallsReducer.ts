@@ -23,6 +23,7 @@ export default function callsReducer(
 	switch (type) {
 		case Actions.Calls.GET_CALLS.REQUEST:
 		case Actions.Calls.GET_CALL_DATA.REQUEST:
+		case Actions.Calls.ADD_NOTE.REQUEST:
             return {
 				...state,
 				...fetching.request,
@@ -39,6 +40,7 @@ export default function callsReducer(
 				}
 			};
         case Actions.Calls.GET_CALL_DATA.SUCCESS:
+		case Actions.Calls.ADD_NOTE.SUCCESS:
             return {
                 ...state,
                 ...fetching.success,
@@ -46,10 +48,16 @@ export default function callsReducer(
             };
         case Actions.Calls.GET_CALLS.FAILED:
 		case Actions.Calls.GET_CALL_DATA.FAILED:
+		case Actions.Calls.ADD_NOTE.FAILED:
             return {
 				...state,
 				...fetching.failed,
 				errorMessage: payload,
+			};
+		case Actions.Calls.RESET_FETCHING:
+			return {
+				...state,
+				...fetching.reset,
 			};
 		default:
 			return state;
