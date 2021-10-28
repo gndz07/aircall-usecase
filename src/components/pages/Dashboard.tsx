@@ -65,7 +65,6 @@ export default function Dashboard() {
         viewColumns: false,
         rowsPerPage: 10,
         onRowClick: (rowData, rowMeta) => {
-            console.log(rowData, rowMeta);
             handleSelectCall(rowData[5]);
         }
     };

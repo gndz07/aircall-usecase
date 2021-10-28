@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/aircall-logo-text.png";
 import "./header.css";
