@@ -6,7 +6,7 @@ import Actions from "../../actions";
 import { RootState } from "../../reducers";
 import moment from "moment";
 import CallDataList from "../CallDataList";
-import { CircularProgress } from "@material-ui/core";
+import LoadingSpinner from "../LoadingSpinner";
 
 export default function CallData() {
     const dispatch = useDispatch();
@@ -29,9 +29,7 @@ export default function CallData() {
     return (
         <div className="container">
             {calls.fetching ? 
-                <div className="loading-container">
-                    <CircularProgress />
-                </div>
+                <LoadingSpinner />
             :
                 (
                 <>

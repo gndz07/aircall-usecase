@@ -5,12 +5,13 @@ import Actions from "../../actions";
 import { RootState } from "../../reducers";
 import MUIDataTable from "mui-datatables";
 import "./dashboard.css";
+import LoadingSpinner from "../LoadingSpinner";
 
 export default function Dashboard() {
     const dispatch = useDispatch();
     let history = useHistory();
     const user = useSelector((state: RootState) => state.auth.user);
-    const callsDataStatus = useSelector((state: RootState) => state.calls?.calls);
+    const callsDataStatus = useSelector((state: RootState) => state.calls);
     const calls = useSelector((state: RootState) => state.calls?.calls?.nodes);
 
     const columns = [
@@ -78,7 +79,7 @@ export default function Dashboard() {
     //fetch next page if it still has next page
     useEffect(() => {
         if (calls) {
-            if (callsDataStatus?.hasNextPage) {
+            if (callsDataStatus?.calls?.hasNextPage) {
                 dispatch(Actions.Calls.GetCalls.request({offset: calls.length}));
             }
         }
@@ -86,14 +87,21 @@ export default function Dashboard() {
 
     return (
         <div className="content-container">
-            <h1>Hello {user.user.username}</h1>
+            {callsDataStatus.fetching ? 
+                <LoadingSpinner />
+            :
 
-            <MUIDataTable
-	        	title={"Call Logs"}
-		        data={callsData}
-		        columns={columns}
-		        options={options}
-		    />
+                <>
+                    <h1>Hello {user.user.username}</h1>
+
+                    <MUIDataTable
+                        title={"Call Logs"}
+                        data={callsData}
+                        columns={columns}
+                        options={options}
+                    />
+                </>
+            }
         </div>
     )
 };
