@@ -9,6 +9,7 @@ import CallDataList from "../CallDataList";
 import LoadingSpinner from "../LoadingSpinner";
 import { Modal } from "modal-for-react";
 import { capitalizeFirstLetter } from "../../libs/stringFunctions";
+import Toast from "../Toast";
 
 export default function CallData() {
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function CallData() {
     const fetchCallData = useCallback((id) => dispatch(Actions.Calls.GetCallData.request(id)),[dispatch]);
     const resetFetching = useCallback(() => dispatch(Actions.Calls.ResetFetching()), [dispatch]);
     const addNote = useCallback((payload) => dispatch(Actions.Calls.AddNote.request(payload)),[dispatch]);
+    const archiveCall = useCallback((id) => dispatch(Actions.Calls.ArchiveCall.request(id)),[dispatch]);
 
     //convert call time to local time
     const callDate = selectedCall?.created_at;
@@ -42,45 +44,33 @@ export default function CallData() {
         }
     }, [calls.fetchingSuccess])
 
-    const handleSubmitNewNote = () => {
+    const handleSubmitNewNote = (e) => {
         addNote({ id, content: {content: capitalizeFirstLetter(newNote)} });
+        setTimeout(() => setNewNote(""), 300);
     };
-
-    useEffect(() => {
-        if (newNote && calls.fetchingSuccess) {
-            setTimeout(() => setNewNote(""), 300);
-            //setTimeout(() => setMakeNoteModal(false), 2000);
-        }
-    }, [calls.fetchingSuccess, newNote])
 
     const makeNote = (
         <div className="modal-container">
-            {calls.fetching && newNote ? 
-                <LoadingSpinner />
-            :
-            (
-                <>
-                    <text className="modal-title">Create new note</text>
-                    <textarea
-                    placeholder="Type your note here"
-                    cols={50}
-                    rows={5}
-                    className="note-input"
-                    onChange={(e) => setNewNote(e.target.value)}
-                    value={newNote}
-                    />
-                    <button className="btn" onClick={handleSubmitNewNote} disabled={!newNote}>
-                    Submit
-                    </button>
-                </>
-            )
-            }
+            <text className="modal-title">Create new note</text>
+            <textarea
+            placeholder="Type your note here"
+            cols={50}
+            rows={5}
+            className="note-input"
+            onChange={(e) => setNewNote(e.target.value)}
+            value={newNote}
+            />
+            <button className="btn" onClick={handleSubmitNewNote} disabled={!newNote}>
+            Submit
+            </button>
         </div>
     );
 
     return (
     <div className="container">
-        {calls.fetching && !newNote ? (
+        <Toast visible={calls.fetchingError} message={calls.errorMessage} />
+        <Toast visible={calls.updated} message="Data updated" type="success" />
+        {calls.fetching ? (
             <LoadingSpinner />
         ) : (
         <>
@@ -108,19 +98,19 @@ export default function CallData() {
             <button className="btn" onClick={() => setMakeNoteModal(true)}>
                 Add note
             </button>
-            <button className="btn">
-                {selectedCall?.isArchived ? "Unarchive call" : "Archive call"}
+            <button className="btn" onClick={() => archiveCall(id)}>
+                {selectedCall?.is_archived ? "Unarchive call" : "Archive call"}
             </button>
             </div>
             <Modal
-            setState={setMakeNoteModal}
-            isActive={makeNoteModal}
-            modalContent={makeNote}
-            backgroundStyle={{
-                backgroundColor: "rgba(0,0,0,0.2)",
-                border: "none",
-            }}
-            contentStyle={{ border: "none" }}
+                setState={setMakeNoteModal}
+                isActive={makeNoteModal}
+                modalContent={makeNote}
+                backgroundStyle={{
+                    backgroundColor: "rgba(0,0,0,0.2)",
+                    border: "none",
+                }}
+                contentStyle={{ border: "none" }}
             />
         </>
         )}

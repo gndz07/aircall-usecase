@@ -6,6 +6,7 @@ import { RootState } from "../../reducers";
 import MUIDataTable from "mui-datatables";
 import "./dashboard.css";
 import LoadingSpinner from "../LoadingSpinner";
+import Toast from "../Toast";
 
 export default function Dashboard() {
     const dispatch = useDispatch();
@@ -87,12 +88,12 @@ export default function Dashboard() {
 
     return (
         <div className="content-container">
+            <Toast visible={callsDataStatus.fetchingError} message={callsDataStatus.errorMessage} />
             {callsDataStatus.fetching ? 
                 <LoadingSpinner />
             :
-
                 <>
-                    <h1>Hello {user.user.username}</h1>
+                    <h1>Hello <span className="highlight-text">{user.user.username}</span></h1>
 
                     <MUIDataTable
                         title={"Call Logs"}

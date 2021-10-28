@@ -10,14 +10,16 @@ export const checkError = async (response) => {
 };
 
 export const toJson = async (response) => {
-  console.log(response);
   let resp = await response.text();
-  console.log(resp);
   return resp ? JSON.parse(resp) : {};
 };
 
 export const GET = async (url: any, headers = {}) => {
   return req(url, headers, null, "GET");
+};
+
+export const PUT = async (url, body = null, headers = {}) => {
+	return req(url, headers, body, "PUT");
 };
 
 export const POST = async (

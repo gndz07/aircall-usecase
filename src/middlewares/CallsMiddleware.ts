@@ -29,8 +29,18 @@ function* addNote(action) {
 	}
 };
 
+function* archiveCall(action) {
+	try {
+		const res = yield call(Api.Calls.ArchiveCall, action.payload);
+		yield put(Actions.Calls.ArchiveCall.success(res));
+	} catch (e) {
+		yield put(Actions.Calls.ArchiveCall.failed(e.message));
+	}
+};
+
 export default function* callsMiddleware() {
 	yield takeEvery(Actions.Calls.GET_CALLS.REQUEST, getCalls);
     yield takeEvery(Actions.Calls.GET_CALL_DATA.REQUEST, getCallData);
 	yield takeEvery(Actions.Calls.ADD_NOTE.REQUEST, addNote);
+	yield takeEvery(Actions.Calls.ARCHIVE_CALL.REQUEST, archiveCall);
 };
