@@ -43,6 +43,12 @@ export default function callsReducer(
 					hasNextPage: payload.hasNextPage
 				}
 			};
+		case Actions.Calls.UPDATE_CALL_DATA:
+			return {
+				...state,
+				...fetching.success,
+				calls: payload
+			};
         case Actions.Calls.GET_CALL_DATA.SUCCESS:
 			return {
                 ...state,

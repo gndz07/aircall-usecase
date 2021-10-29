@@ -5,6 +5,7 @@ export const GET_CALL_DATA = asyncAction("@@aircall/calls/get-call-data");
 export const ADD_NOTE = asyncAction("@@aircall/calls/add-note");
 export const ARCHIVE_CALL = asyncAction("@@aircall/calls/archive-call");
 export const RESET_FETCHING = "@@aircall/calls/fetching/reset";
+export const UPDATE_CALL_DATA = "@@aircall/calls/update-call-data";
 
 export const GetCalls = {
 	request: (payload) => ({ type: GET_CALLS.REQUEST, payload }),
@@ -32,4 +33,8 @@ export const ArchiveCall = {
 
 export const ResetFetching = () => ({
 	type: RESET_FETCHING,
+});
+
+export const UpdateCallData = (payload) => ({
+	type: UPDATE_CALL_DATA, payload
 });
