@@ -41,3 +41,9 @@
     font-size: 1rem;
     margin-top: 2rem;
 }
+
+@media only screen and (max-width: 767px) {
+    .data-container {
+        grid-template-columns: 8rem 1rem auto;
+    }
+}

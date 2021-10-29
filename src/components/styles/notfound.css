@@ -1,0 +1,25 @@
+.notfound-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.header-text {
+    color: var(--primary-color);
+    font-size: 7rem;
+    margin-bottom: 0;
+}
+
+.description {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.link {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--primary-color);
+}

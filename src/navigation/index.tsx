@@ -5,7 +5,8 @@ import { Redirect } from "react-router-dom";
 import Login from "components/pages/Login";
 import Dashboard from "components/pages/Dashboard";
 import CallData from "components/pages/CallData";
-import Header from 'components/Header';
+import Header from "components/Header";
+import NotFound from "components/pages/NotFound"
 //import Footer from '../components/Footer';
 import "../App.css";
 import { RootState } from "reducers";
@@ -70,6 +71,7 @@ export default function AppRouter() {
               {token ? <Dashboard /> : <Redirect to="/login" />}
             </Route>
             <Route path='/call/:id' component={CallData} />
+            <Route component={NotFound} />
           </Fragment>
         </Switch>
       </div>
