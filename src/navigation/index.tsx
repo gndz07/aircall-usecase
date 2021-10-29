@@ -2,16 +2,16 @@ import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import Login from "../components/pages/Login";
-import Dashboard from "../components/pages/Dashboard";
-import CallData from "../components/pages/CallData";
-import Header from '../components/Header';
+import Login from "components/pages/Login";
+import Dashboard from "components/pages/Dashboard";
+import CallData from "components/pages/CallData";
+import Header from 'components/Header';
 //import Footer from '../components/Footer';
 import "../App.css";
-import { RootState } from "../reducers";
-import * as storage from "../libs/storage";
-import Actions from "../actions";
-import * as jwt from "../libs/jwt";
+import { RootState } from "reducers";
+import * as storage from "libs/storage";
+import Actions from "actions";
+import * as jwt from "libs/jwt";
 
 export default function AppRouter() {
   const dispatch = useDispatch();

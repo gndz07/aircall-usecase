@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Actions from "../../actions";
-import { RootState } from "../../reducers";
+import Actions from "actions";
+import { RootState } from "reducers";
 import MUIDataTable from "mui-datatables";
-import "../styles/dashboard.css";
-import LoadingSpinner from "../LoadingSpinner";
-import Toast from "../Toast";
+import "components/styles/dashboard.css";
+import LoadingSpinner from "components/LoadingSpinner";
+import Toast from "components/Toast";
 
 export default function Dashboard() {
     const dispatch = useDispatch();

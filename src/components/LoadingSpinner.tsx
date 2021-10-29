@@ -1,5 +1,5 @@
 import { CircularProgress } from "@material-ui/core";
-import "./styles/loading-spinner.css";
+import "components/styles/loading-spinner.css";
 
 export default function LoadingSpinner() {
     return (

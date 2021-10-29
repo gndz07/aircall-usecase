@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import "./styles/call-data-list.css";
+import "components/styles/call-data-list.css";
 
 interface CallDataListProps {
 	title: string;

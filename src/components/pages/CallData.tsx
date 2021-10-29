@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import "../styles/call-data.css";
-import Actions from "../../actions";
-import { RootState } from "../../reducers";
+import "components/styles/call-data.css";
+import Actions from "actions";
+import { RootState } from "reducers";
 import moment from "moment";
-import CallDataList from "../CallDataList";
-import LoadingSpinner from "../LoadingSpinner";
+import CallDataList from "components/CallDataList";
+import LoadingSpinner from "components/LoadingSpinner";
 import { Modal } from "modal-for-react";
-import { capitalizeFirstLetter } from "../../libs/stringFunctions";
-import Toast from "../Toast";
+import { capitalizeFirstLetter } from "libs/stringFunctions";
+import Toast from "components/Toast";
 
 export default function CallData() {
     const dispatch = useDispatch();
