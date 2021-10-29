@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/aircall-logo-text.png";
-import "./header.css";
+import "./styles/header.css";
 
 export default function Header() {
     return (

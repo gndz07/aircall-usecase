@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Actions from "../../actions";
 import { RootState } from "../../reducers";
 import MUIDataTable from "mui-datatables";
-import "./dashboard.css";
+import "../styles/dashboard.css";
 import LoadingSpinner from "../LoadingSpinner";
 import Toast from "../Toast";
 

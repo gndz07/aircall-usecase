@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import "./call-data.css";
+import "../styles/call-data.css";
 import Actions from "../../actions";
 import { RootState } from "../../reducers";
 import moment from "moment";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import logo from "../../assets/aircall-logo.png";
-import './login.css';
+import '../styles/login.css';
 import Actions from "../../actions";
 
 export default function Login() {
