@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) template.
 
+Answer to [Aircall front end hiring test](https://github.com/aircall/frontend-hiring-test)
+
 ## Run the project in local
 
 Clone this repository in your local, and then create an `.env` file populated with the corresponding data in the root folder.

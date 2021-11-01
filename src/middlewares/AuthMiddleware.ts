@@ -51,7 +51,7 @@ function* checkAccessTokenValidity() {
 		if (token && jwt.isExpired(token)) {
 			yield put(Actions.Auth.RefreshToken.request());
 		}
-		yield delay(600000);
+		yield delay(300000);
 	}
 };
 
