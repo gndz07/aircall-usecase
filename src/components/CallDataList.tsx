@@ -21,18 +21,18 @@ export default function CallDataList({ title, content, contentType="text" } : Ca
 
     return (
         <>
-            <text className="data-title">{title}</text>
-            <text>:</text>
+            <p className="data-title">{title}</p>
+            <p>:</p>
             {contentType === "list" ? 
                 (listData ? 
                     <ol className="list-container">
                         {listData.map(item => <li className="list-item">{item}</li>)}
                     </ol> 
                 :
-                    <text className="data-content">No {title.toLowerCase()}</text>
+                    <p className="data-content">No {title.toLowerCase()}</p>
                 )
             :
-                <text className="data-content">{content}</text>
+                <p className="data-content">{content}</p>
             }
         </>
     )

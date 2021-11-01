@@ -18,6 +18,7 @@ export default function CallData() {
     const [makeNoteModal, setMakeNoteModal] = useState(false);
     const [newNote, setNewNote] = useState(null);
 
+    const user = useSelector((state: RootState) => state.auth.user);
     const calls = useSelector((state: RootState) => state.calls);
     const selectedCall = useSelector((state: RootState) => state.calls?.selectedCall);
 
@@ -35,7 +36,7 @@ export default function CallData() {
     if (id) {
         fetchCallData(id);
     }
-    }, [id]);
+    }, [id, user.access_token]);
 
     //reset fetching status
     useEffect(() => {
@@ -51,7 +52,7 @@ export default function CallData() {
 
     const makeNote = (
         <div className="modal-container">
-            <text className="modal-title">Create new note</text>
+            <p className="modal-title">Create new note</p>
             <textarea
             placeholder="Type your note here"
             cols={50}

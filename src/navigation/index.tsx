@@ -63,16 +63,14 @@ export default function AppRouter() {
   return (
     <Router>
       <div id="main-container">
+        {token ? <Header /> : false}
         <Switch>
           <Route path="/login">{token ? <Redirect to="/" /> : <Login />}</Route>
-          <Fragment>
-            <Header />
             <Route exact path="/">
               {token ? <Dashboard /> : <Redirect to="/login" />}
             </Route>
             <Route path='/call/:id' component={CallData} />
             <Route component={NotFound} />
-          </Fragment>
         </Switch>
       </div>
     </Router>
